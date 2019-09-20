@@ -3,7 +3,7 @@ import csv
 
 # Files to Load
 csvpath = "C:/Users/David/Desktop/GTATL201908DATA3/02 - Homework/03-Python/Instructions/PyBank/Resources/budget_data.csv"
-#file_to_output = "Resources/budget_analysis.txt"
+file_to_output = "Resources/budget_data.txt"
 
 #Variables
 total_months = 0
@@ -34,11 +34,11 @@ with open(csvpath) as revenue_data:
         # print(row)
 
 
-        # value to subtract from the next change
+        # value to subtract from the next change, receiving "KeyError" for "Profit/Losses"
         prev_revenue = int(row["Profit/Losses"]) 
         #print(prev_revenue)
 
-        # Determine the greatest increase
+        # Determine the greatest increase and date
         if (revenue_change > greatest_increase[1]):
             greatest_increase[1] = revenue_change
             greatest_increase[0] = row["Date"]
@@ -65,13 +65,13 @@ with open(csvpath) as revenue_data:
     print("Greatest Increase: " + str(greatest_increase[0]) + " ($" +  str(greatest_increase[1]) + ")") 
     print("Greatest Decrease: " + str(greatest_decrease[0]) + " ($" +  str(greatest_decrease[1]) + ")")
     
-# with open("C:/Users/David/Desktop/GTATL201908DATA3/02 - Homework/03-Python/Instructions/PyBank/Resources/budget_data.csv", "w") as text:    
-#     text.write("Financial Analysis\n")
-#     text.write("-------------------------")
-#     text.write("Total Months: " + str(total_months))
-#     text.write("Total Revenue: " + "$" + str(total_revenue))
-#     text.write("Average Change: " + "$" + str(round(sum(revenue_changes) / len(revenue_changes),2)))
-#     text.write("Greatest Increase: " + str(greatest_increase[0]) + " ($" +  str(greatest_increase[1]) + ")") 
-#     text.write("Greatest Decrease: " + str(greatest_decrease[0]) + " ($" +  str(greatest_decrease[1]) + ")")
+with open("C:/Users/David/Desktop/GTATL201908DATA3/02 - Homework/03-Python/Instructions/PyBank/Resources/budget_data.csv", "w") as text:    
+    text.write("Financial Analysis")
+    text.write("-------------------------")
+    text.write("Total Months: " + str(total_months))
+    text.write("Total Revenue: " + "$" + str(total_revenue))
+    text.write("Average Change: " + "$" + str(round(sum(revenue_changes) / len(revenue_changes),2)))
+    text.write("Greatest Increase: " + str(greatest_increase[0]) + " ($" +  str(greatest_increase[1]) + ")") 
+    text.write("Greatest Decrease: " + str(greatest_decrease[0]) + " ($" +  str(greatest_decrease[1]) + ")")
  
 
